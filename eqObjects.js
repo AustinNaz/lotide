@@ -16,22 +16,27 @@ const eqArrays = function(arr1, arr2) {
   return isEqual;
 };
 
-const eqObjects = function(object1, object2) {
-  let test = false;
-  if (eqArrays(Object.keys(object1).sort(), Object.keys(object2).sort())) {   // Check if the keys are the same in both
-    for (objects in object1) {
-      if (object1[objects] === object2[objects]) {    // If the values and data types of the objects are the same in both set true and try next
-        console.log('has object');
-        test = true;
-      } else if (eqArrays(object1[objects], object2[objects])) {    // If the data types are different but the values are the same contine
-          test = true;
-        } else {
-        test = false;
-          break;
-        }
-      }
+function eqObjects(obj1, obj2) {
+  let isEqual = false;
+  for (objects of Object.keys(obj1)) {
+    // console.log(objects);
+    if (typeof obj1[objects] === 'object' && typeof obj2[objects] === 'object' &&  !Array.isArray(obj1[objects]) && !Array.isArray(obj2[objects])) {
+      return eqObjects(obj1[objects], obj2[objects]);
+      // console.log('is Object');
+    } else if (Array.isArray(obj1[objects] && Array.isArray(obj2[objects]))) {
+      isEqual = eqArrays(Object.keys(object1).sort(), Object.keys(object2).sort());
+      // console.log('is Array');
+    } 
+
+    if (obj1[objects] === obj2[objects]) {
+      // console.log('equal');
+      isEqual = true;
+    } else {
+      isEqual = false;
+      return console.log(isEqual);
     }
-  return console.log(test);
+  }
+  return console.log(isEqual);
 };
 
 
@@ -50,6 +55,32 @@ const eqObjects = function(object1, object2) {
 // const cd2 = { c: "1", d: ["2", 3, 4] };
 // eqObjects(cd, cd2); // => false
 
-const cx = {c: '4', d: ['2', 3, 4]}
-const cr = {c: '4', d: ['2', 3]}
-eqObjects(cx, cr)
+// const cx = {c: '4', d: ['2', 3, 4]}
+// const cr = {c: '4', d: ['2', 3]}
+// eqObjects(cx, cr)
+
+eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => true
+
+eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }) // => false
+eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }) // => false
+eqObjects({
+  a: 2,
+  b: {
+    k: 5,
+    c: 3,
+    d: {
+      g: 6,
+    }
+  },
+  e: 5
+}, {
+  a: 2,
+  b: {
+    c: 3,
+    k: 5,
+    d: {
+      g: 6,
+    }
+  },
+  e: 5
+})

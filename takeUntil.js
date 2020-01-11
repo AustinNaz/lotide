@@ -27,9 +27,9 @@ const takeUntil = function(array, callback) {
   for (value of array) {
     if (!callback(value)) {
       results.push(callback(value) ? null : value);
-      console.log('false');
+      // console.log('false');
     } else {
-      console.log('true');
+      // console.log('true');
       break;
     }
   }
