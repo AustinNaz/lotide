@@ -22,20 +22,29 @@ const assertArraysEqual = function(actual, expected) {
   }
 };
 
+// const flatten = function(arr) {
+//   let flatArr = [];
+//   for (let x = 0; x < arr.length; x++) {
+//     if (Array.isArray(arr[x])) {    // Check if the object is an array
+//       for (let y = 0; y < arr[x].length; y++) {   // If it is, iterate and push to the new array
+//         flatArr.push(arr[x][y]);
+//       }
+//     } else {
+//       flatArr.push(arr[x]);   // Otherwise just push to the new array
+//     }
+//   }
+//   return flatArr;
+// };
+
 const flatten = function(arr) {
   let flatArr = [];
-  for (let x = 0; x < arr.length; x++) {
-    if (Array.isArray(arr[x])) {    // Check if the object is an array
-      for (let y = 0; y < arr[x].length; y++) {   // If it is, iterate and push to the new array
-        flatArr.push(arr[x][y]);
-      }
-    } else {
-      flatArr.push(arr[x]);   // Otherwise just push to the new array
-    }
-  }
-  return flatArr;
-};
 
+  arr.forEach((value, index, array) => {
+    array.value.forEach((values) => {
+      connsole.log(values);
+    })
+  })
+}
 assertArraysEqual(flatten([1, 2, [3, 4], 5, [6]]), [1, 2, 3, 4, 5, 6]);
 assertArraysEqual(flatten([1, 2, 3, 4, 5, 6]), [1, 2, 3, 4, 5, 6]);
 // assertArraysEqual(flatten([1, 2, [3, [4, 5]], 7, [7]]), [1, 2, 3, 4, 5, 7, 7]);
