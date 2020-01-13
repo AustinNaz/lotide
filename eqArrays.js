@@ -1,11 +1,3 @@
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {    // Test if the inputs are equal in type and data
-    console.log(`✔️✔️✔️: ${actual} === ${expected}`);
-  } else {    // Else return failed
-    console.log(`🔴️🔴️🔴️: ${actual} !== ${expected}`);
-  }
-};
-
 // const eqArrays = function(arr1, arr2) {
 //   let isEqual = false;
 //   if (arr1.length !== arr2.length) return false;    // If array lengths arent equal automatically make false
@@ -54,7 +46,6 @@ const assertEqual = function(actual, expected) {
 
 const eqArrays = function(arr1, arr2) {
   let isEqual;
-  console.log(arr1, arr2);
   if (arr1.length !== arr2.length) return isEqual = false;    // check if the level of arrays you are at in the stack have the same length
 
   arr1.forEach((value, index) => {
@@ -70,12 +61,4 @@ const eqArrays = function(arr1, arr2) {
   return this.isEqual;
 }
 
-// assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => true
-// assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false); // => false,
-// assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true); // => true
-// assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false); // => false
-
-console.log(eqArrays([[2, 3], [4], [5]], [[2, 3], [4], [5]])) // => true
-
-console.log(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]])) // => false
-console.log(eqArrays([[2, 3], [4]], [[2, 3], 4])) // => false
+module.exports = eqArrays;

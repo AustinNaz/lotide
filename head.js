@@ -1,5 +1,3 @@
-const assertEqual = require('./assertEqual');
-
 const head = function(arr) {
   let headVar = '';   // Create the final variable
   if (!arr) {   // If there is no array return undefined
