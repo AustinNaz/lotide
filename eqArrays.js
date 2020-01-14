@@ -47,18 +47,26 @@
 const eqArrays = function(arr1, arr2) {
   let isEqual;
   if (arr1.length !== arr2.length) return isEqual = false;    // check if the level of arrays you are at in the stack have the same length
-
+  
+  if (this.isEqual === false) {
+    return this.isEqual = false;
+  }
+  
   arr1.forEach((value, index) => {
+    if (this.isEqual === false) return this.isEqual = false;
     if (Array.isArray(arr1[index]) && Array.isArray(arr2[index])) {   // Check if the level of arrays in the stack is has an another array nested in it
-       if (!eqArrays(arr1[index], arr2[index])) {   // Do a recursion if it is an array of arrays, and return false up the stack if theres a false call
+      if (!eqArrays(arr1[index], arr2[index])) {   // Do a recursion if it is an array of arrays, and return false up the stack if theres a false call
         return this.isEqual = false;
       }
-    } else if (arr1[index] !== arr2[index]) {   // if its not an array then check if its false, if it is change the variable to false but with this. so it refers to the function version of this? on the higher stack?
-      return this.isEqual = false;
     }
-    return this.isEqual = true;
+    
+    if (arr1[index] !== arr2[index]) {   // if its not an array then check if its false, if it is change the variable to false but with this. so it refers to the function version of this? on the higher stack?
+      return this.isEqual = false;
+    } else {
+      return this.isEqual = true;
+    }
   });
   return this.isEqual;
-}
+};
 
 module.exports = eqArrays;

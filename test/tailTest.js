@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const tail = require('../tail');
+const tail = require('../index').tail;
 
 describe("#tail", () => {
   it('return undefined when empty array is added', () => {
